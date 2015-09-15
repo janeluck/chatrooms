@@ -6,6 +6,9 @@ var fs    = require('fs');
 var path  = require('path');
 var mime  = require('mime');
 var cache = {};
+
+//  diable cache in debug
+var debug = true;
 function send404(response) {
     response.writeHead(404, {'Content-Type': 'text/plain'});
     response.write('Error 404: resource not found.');
@@ -19,6 +22,7 @@ function sendFile(response, filePath, fileContents) {
     response.end(fileContents);
 }
 function serveStatic(response, cache, absPath) {
+    if (debug) cache = [];
     if (cache[absPath]) {
         sendFile(response, absPath, cache[absPath]);
     } else {
