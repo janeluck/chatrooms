@@ -7,7 +7,7 @@ var path  = require('path');
 var mime  = require('mime');
 var cache = {};
 
-//  diable cache in debug
+//  disable cache in debug
 var debug = true;
 function send404(response) {
     response.writeHead(404, {'Content-Type': 'text/plain'});
